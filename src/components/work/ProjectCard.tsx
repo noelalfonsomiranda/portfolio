@@ -16,7 +16,6 @@ export default function ProjectCard({ project, compact = false, onOpen }: Props)
     >
       <span className="thumb">
         <ProjectArt project={project} />
-        {project.current && <span className="badge-current">Current role</span>}
       </span>
       <span className="body">
         <span className="kind">{project.kind}</span>

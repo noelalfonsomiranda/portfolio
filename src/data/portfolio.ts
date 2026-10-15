@@ -32,8 +32,6 @@ export type Project = {
   pos?: string;
   mock: MockType;
   color: Accent;
-  /** Shows a "Current role" badge on the card and in the modal. */
-  current?: boolean;
 };
 
 export type Job = {
@@ -145,7 +143,6 @@ export const projects: Project[] = [
     title: "Mint Hosted Payment Page and WebPay",
     img: "/projects/mint-hpp.jpg",
     pos: "center top",
-    current: true,
     mock: "checkout",
     color: "primary",
     role: "Full Stack Developer",
@@ -181,7 +178,6 @@ export const projects: Project[] = [
     title: "Mint Hub",
     img: "/projects/mint-hub.jpg",
     pos: "center top",
-    current: true,
     mock: "dashboard",
     color: "green",
     role: "Full Stack Developer",
@@ -217,7 +213,6 @@ export const projects: Project[] = [
     title: "ARM: Acquirer Routing Matrix",
     img: "/projects/mint-arm.jpg",
     pos: "center top",
-    current: true,
     mock: "matrix",
     color: "amber",
     role: "Full Stack Developer",

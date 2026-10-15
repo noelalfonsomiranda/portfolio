@@ -272,7 +272,6 @@ Almost everything lives in **`src/data/portfolio.ts`**:
 
 - **Images:** put files in `public/` and reference them from the site root, for example `/projects/name.jpg`. Resize screenshots to at most 1400px wide before adding them.
 - **NDA work:** leave out `img` on the project, and its `mock` illustration is shown instead.
-- **Current role:** set `current: true` on a project to show the amber "Current role" badge on its card and in its modal.
 - **New technology:** add it to the right layer in `src/lib/stack.ts` so its tag gets the right color. Unknown tags default to front end.
 - **Colors:** change `--primary` and its three tints at the top of `src/app/globals.css`.
 
