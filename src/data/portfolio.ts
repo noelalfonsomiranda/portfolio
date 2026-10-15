@@ -32,6 +32,8 @@ export type Project = {
   pos?: string;
   mock: MockType;
   color: Accent;
+  /** Shows a "Current role" badge on the card and in the modal. */
+  current?: boolean;
 };
 
 export type Job = {
@@ -126,6 +128,9 @@ export const skills: SkillGroup[] = [
 
 /** Main cards, in this order. Every other project goes to the compact "and a few more" row. */
 export const FEATURED = [
+  "Mint Hosted Payment Page and WebPay",
+  "Mint Hub",
+  "ARM: Acquirer Routing Matrix",
   "UnionBank Online",
   "SYKES OneTEAM",
   "7-Eleven CLiQQ Shop",
@@ -138,6 +143,9 @@ export const projects: Project[] = [
   {
     kind: "Fintech · Payments",
     title: "Mint Hosted Payment Page and WebPay",
+    img: "/projects/mint-hpp.jpg",
+    pos: "center top",
+    current: true,
     mock: "checkout",
     color: "primary",
     role: "Full Stack Developer",
@@ -171,6 +179,9 @@ export const projects: Project[] = [
   {
     kind: "Fintech · SaaS",
     title: "Mint Hub",
+    img: "/projects/mint-hub.jpg",
+    pos: "center top",
+    current: true,
     mock: "dashboard",
     color: "green",
     role: "Full Stack Developer",
@@ -204,6 +215,9 @@ export const projects: Project[] = [
   {
     kind: "Fintech · Admin tool",
     title: "ARM: Acquirer Routing Matrix",
+    img: "/projects/mint-arm.jpg",
+    pos: "center top",
+    current: true,
     mock: "matrix",
     color: "amber",
     role: "Full Stack Developer",

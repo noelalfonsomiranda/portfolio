@@ -96,6 +96,7 @@ export default function ProjectModal({ project, onClose }: Props) {
                 <X size={18} />
               </button>
               <span className="tag">{project.kind}</span>
+              {project.current && <span className="badge-current inline">Current role</span>}
               <h3 id="project-title">{project.title}</h3>
               <div className="my-role">
                 <UserRound size={14} aria-hidden />
