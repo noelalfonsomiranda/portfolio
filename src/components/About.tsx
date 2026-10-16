@@ -23,9 +23,9 @@ const ICONS: Record<SkillGroup["icon"], LucideIcon> = {
 
 export default function About() {
   return (
-    <section id="about" className="alt">
+    <section id="about">
       <div className="wrap about">
-        <div className="reveal">
+        <div>
           <p className="eyebrow">{about.eyebrow}</p>
           <h2>{about.heading}</h2>
           {about.paragraphs.map((p) => (
@@ -47,7 +47,7 @@ export default function About() {
           </div>
         </div>
 
-        <div className="skills reveal">
+        <div className="skills">
           {skills.map((s) => {
             const Icon = ICONS[s.icon];
             return (

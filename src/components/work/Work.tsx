@@ -18,9 +18,9 @@ export default function Work() {
   return (
     <section id="work">
       <div className="wrap">
-        <div className="sec-head reveal">
+        <div className="sec-head">
           <div>
-            <p className="eyebrow">things I&apos;ve built</p>
+            <p className="eyebrow">Portfolio</p>
             <h2>Selected work</h2>
             <p className="lead">
               Real products for real users, from payments and banking to NGOs and hotels. Click any card for
@@ -44,9 +44,7 @@ export default function Work() {
 
         {more.length > 0 && (
           <>
-            <p className="more-head reveal">
-              <span className="hand">and a few more</span>
-            </p>
+            <h3 className="more-head">More projects</h3>
             <div className="projects-more">
               {more.map((p) => (
                 <ProjectCard key={p.title} project={p} compact onOpen={() => setOpen(p)} />

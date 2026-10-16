@@ -56,24 +56,24 @@ export const profile = {
   firstName: "Noel",
   initials: "NM",
   logo: { name: "noel", tld: "dev" },
-  title: "Senior Frontend Engineer",
+  title: "Full Stack Developer",
   greeting: "Hey there, I'm Noel 👋",
   headline: { before: "I turn ideas into web apps people ", highlight: "enjoy using", after: "." },
   subtitle:
-    "Senior Frontend Engineer with 11+ years building fast, accessible apps for fintech, banking and e-commerce. React and TypeScript are home; Node.js is the backyard.",
+    "Full Stack Developer with 11+ years building fast, accessible apps for fintech, banking and e-commerce. React and TypeScript are home; Node.js is the backyard.",
   status: "Open to front-end and full-stack roles",
-  photo: { src: "/noel.jpg", alt: "Noel Miranda at his desk" },
+  photo: { src: "/noel.jpg", alt: "Noel Alfonso Miranda at his desk" },
   email: "noelalfonsomiranda@gmail.com",
   linkedin: {
     url: "https://www.linkedin.com/in/noel-alfonso-miranda-709a63a4",
     label: "in/noel-alfonso-miranda",
   },
   seoDescription:
-    "Noel Miranda, Senior Frontend Engineer with 11+ years building fast, accessible web apps with React, TypeScript and Node.js for fintech, banking and e-commerce.",
+    "Noel Alfonso Miranda, Full Stack Developer with 11+ years building fast, accessible web apps with React, TypeScript and Node.js for fintech, banking and e-commerce.",
 };
 
 export const about = {
-  eyebrow: "a bit about me",
+  eyebrow: "About me",
   heading: "Frontend at heart, full-stack when it counts.",
   paragraphs: [
     "I'm a developer from the Philippines who enjoys the whole journey of a feature, from business rules and Figma to the last edge case. I care about clean, maintainable code, accessibility and good tests.",
@@ -410,7 +410,7 @@ export const projects: Project[] = [
 ];
 
 export const journey = {
-  eyebrow: "small steps, big leaps",
+  eyebrow: "Experience",
   heading: "The journey so far",
   lead: "From WordPress sites in 2015 to owning a fintech front end. Every role added a little more scope.",
   note: ["it all started", "with a blog ↗"],
@@ -468,9 +468,9 @@ export const jobs: Job[] = [
 ];
 
 export const contact = {
-  eyebrow: "your idea, my code",
+  eyebrow: "Contact",
   heading: "Got a project or a role in mind? Let's talk.",
   lead: "I'm open to full-time front-end and full-stack roles, plus the occasional freelance build. I usually reply within a day.",
 };
 
-export const footer = { note: "built with React, Next.js and lots of coffee" };
+export const footer = { note: "Built with React and Next.js." };

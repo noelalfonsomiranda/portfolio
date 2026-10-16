@@ -3,9 +3,9 @@ import { ACCENT } from "@/lib/stack";
 
 export default function Journey() {
   return (
-    <section id="journey" className="alt">
+    <section id="journey">
       <div className="wrap">
-        <div className="sec-head reveal">
+        <div className="sec-head">
           <div>
             <p className="eyebrow">{journey.eyebrow}</p>
             <h2>{journey.heading}</h2>
@@ -25,7 +25,7 @@ export default function Journey() {
             return (
               <li
                 key={`${job.company}-${job.when}`}
-                className={`tl-item ${side} reveal`}
+                className={`tl-item ${side}`}
                 style={{ gridColumn: side === "left" ? 1 : 3, gridRow: `${i + 1} / span 2` }}
               >
                 <span className="tl-conn" aria-hidden />

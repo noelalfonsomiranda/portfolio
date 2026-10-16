@@ -9,8 +9,8 @@ const LINKS = [
   { id: "home", label: "Home" },
   { id: "about", label: "About" },
   { id: "work", label: "Work" },
-  { id: "journey", label: "Journey" },
-  { id: "contact", label: "Contact" },
+  // TEMPORARILY COMMENTED OUT, DON'T REMOVE: "The journey so far" section is hidden for now (see app/page.tsx).
+  // { id: "journey", label: "Journey" },
 ];
 
 export default function Header() {
@@ -28,7 +28,7 @@ export default function Header() {
       (entries) => entries.forEach((e) => e.isIntersecting && setActive(e.target.id)),
       { rootMargin: "-45% 0px -50% 0px" },
     );
-    LINKS.forEach(({ id }) => {
+    [...LINKS.map((l) => l.id), "contact"].forEach((id) => {
       const el = document.getElementById(id);
       if (el) spy.observe(el);
     });
@@ -43,12 +43,7 @@ export default function Header() {
     <header className={cx("site-header", scrolled && "scrolled")}>
       <div className="wrap">
         <a href="#home" className="logo" aria-label={`${profile.name}, back to top`}>
-          <span className="logo-mark">{profile.initials}</span>
-          <span>
-            {profile.logo.name}
-            <span className="dot">.</span>
-            {profile.logo.tld}
-          </span>
+          {profile.name}
         </a>
         <nav id="site-nav" className={cx("site-nav", open && "open")} aria-label="Main">
           <ul>
@@ -66,6 +61,9 @@ export default function Header() {
             ))}
           </ul>
         </nav>
+        <a href="#contact" className="nav-cta">
+          Contact
+        </a>
         <button
           type="button"
           className="menu-btn"

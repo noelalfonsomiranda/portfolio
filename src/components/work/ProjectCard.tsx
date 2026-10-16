@@ -10,7 +10,7 @@ export default function ProjectCard({ project, compact = false, onOpen }: Props)
   return (
     <button
       type="button"
-      className={cx("project sketch reveal", compact && "mini")}
+      className={cx("project card", compact && "mini")}
       aria-haspopup="dialog"
       onClick={onOpen}
     >

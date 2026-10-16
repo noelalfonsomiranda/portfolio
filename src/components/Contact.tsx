@@ -1,5 +1,5 @@
 import { ArrowUpRight, Mail } from "lucide-react";
-import { contact, footer, profile } from "@/data/portfolio";
+import { contact, profile } from "@/data/portfolio";
 
 // lucide-react no longer ships brand logos, so the LinkedIn mark is drawn inline.
 function LinkedInIcon({ size = 22 }: { size?: number }) {
@@ -12,45 +12,32 @@ function LinkedInIcon({ size = 22 }: { size?: number }) {
 
 export default function Contact() {
   return (
-    <>
-      <section id="contact" style={{ paddingBottom: 40 }}>
-        <div className="wrap">
-          <div className="contact reveal">
-            <div>
-              <p className="eyebrow">{contact.eyebrow}</p>
-              <h2>{contact.heading}</h2>
-              <p className="lead">{contact.lead}</p>
-            </div>
-            <div className="links">
-              <a className="link" href={`mailto:${profile.email}`}>
-                <Mail size={22} className="lead-ic" aria-hidden />
-                <div>
-                  Email me<small>{profile.email}</small>
-                </div>
-                <ArrowUpRight size={18} className="go" aria-hidden />
-              </a>
-              <a className="link" href={profile.linkedin.url} target="_blank" rel="noopener noreferrer">
-                <LinkedInIcon />
-                <div>
-                  Connect on LinkedIn<small>{profile.linkedin.label}</small>
-                </div>
-                <ArrowUpRight size={18} className="go" aria-hidden />
-              </a>
-            </div>
+    <section id="contact">
+      <div className="wrap">
+        <div className="contact">
+          <div>
+            <p className="eyebrow">{contact.eyebrow}</p>
+            <h2>{contact.heading}</h2>
+            <p className="lead">{contact.lead}</p>
+          </div>
+          <div className="links">
+            <a className="link" href={`mailto:${profile.email}`}>
+              <Mail size={22} className="lead-ic" aria-hidden />
+              <div>
+                Email me<small>{profile.email}</small>
+              </div>
+              <ArrowUpRight size={18} className="go" aria-hidden />
+            </a>
+            <a className="link" href={profile.linkedin.url} target="_blank" rel="noopener noreferrer">
+              <LinkedInIcon />
+              <div>
+                Connect on LinkedIn<small>{profile.linkedin.label}</small>
+              </div>
+              <ArrowUpRight size={18} className="go" aria-hidden />
+            </a>
           </div>
         </div>
-      </section>
-
-      <footer className="site-footer">
-        <div className="wrap">
-          <span>
-            © {new Date().getFullYear()} {profile.name}
-          </span>
-          <span className="hand" style={{ fontSize: 18 }}>
-            {footer.note}
-          </span>
-        </div>
-      </footer>
-    </>
+      </div>
+    </section>
   );
 }

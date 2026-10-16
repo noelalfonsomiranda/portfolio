@@ -2,8 +2,9 @@
 
 A one-page developer portfolio: a hero, an about section with skills, a project gallery with detail modals, a career timeline and a contact panel. It's built as a fully static site with Next.js and deployed to Vercel.
 
-- **Live structure:** Home → About → Work → Journey → Contact, with a fixed header
-- **Design style:** "Sketchbook": warm paper tones, ink outlines, offset shadows and handwritten notes
+- **Live structure:** Home → About → Work → Contact, with a fixed header. ("The journey so far" is built but temporarily hidden.)
+- **Design style:** flat and simple: a split hero, one blue (`#087EA4`), 1px borders, 8px corners, no shadows and no animation
+- **Previous design:** the earlier "Sketchbook" version is kept as a separate copy in `../portfolio-sketchbook`
 - **Content model:** every word, project, date and link lives in one typed data file
 
 ---
@@ -26,18 +27,17 @@ A one-page developer portfolio: a hero, an about section with skills, a project 
 
 ## Tech stack
 
-| Layer      | Technology                                                | Version | Why it was chosen                                                                                                |
-| ---------- | --------------------------------------------------------- | ------- | ---------------------------------------------------------------------------------------------------------------- |
-| Framework  | [Next.js](https://nextjs.org) (App Router, static export) | 16.4    | Pre-renders the page to plain HTML at build time: fast first paint, readable by search engines, no server to run |
-| UI library | React                                                     | 19.3    | Component model for the sections, cards and modal                                                                |
-| Language   | TypeScript (strict)                                       | 5.9     | Typed content model catches data mistakes at build time                                                          |
-| Styling    | Tailwind CSS v4 + hand-written component CSS              | 4.3     | Tailwind supplies the reset and token utilities; the signature "sketch" styles are plain CSS in one file         |
-| Animation  | [Motion](https://motion.dev) (formerly Framer Motion)     | 14.3    | Enter and exit animations for the project modal                                                                  |
-| Icons      | [Lucide React](https://lucide.dev)                        | 1.57    | Consistent outline icons, imported one by one so only the used icons ship                                        |
-| Fonts      | `next/font/google`: Plus Jakarta Sans and Caveat          | —       | Self-hosted at build time: no layout shift and no request to Google at runtime                                   |
-| Linting    | ESLint 9 (flat config) with `eslint-config-next`          | 9.39    | React, hooks, Next.js and accessibility rules, plus extra readability rules                                      |
-| Formatting | Prettier + `prettier-plugin-tailwindcss`                  | 3.9     | One consistent code style; `eslint-config-prettier` stops the two tools from clashing                            |
-| Hosting    | Vercel                                                    | —       | Free tier, a preview URL for every push, custom domain with HTTPS                                                |
+| Layer      | Technology                                                | Version | Why it was chosen                                                                                                      |
+| ---------- | --------------------------------------------------------- | ------- | ---------------------------------------------------------------------------------------------------------------------- |
+| Framework  | [Next.js](https://nextjs.org) (App Router, static export) | 16.4    | Pre-renders the page to plain HTML at build time: fast first paint, readable by search engines, no server to run       |
+| UI library | React                                                     | 19.3    | Component model for the sections, cards and modal                                                                      |
+| Language   | TypeScript (strict)                                       | 5.9     | Typed content model catches data mistakes at build time                                                                |
+| Styling    | Tailwind CSS v4 + hand-written component CSS              | 4.3     | Tailwind supplies the reset and token utilities; the signature "sketch" styles are plain CSS in one file               |
+| Icons      | [Lucide React](https://lucide.dev)                        | 1.57    | Consistent outline icons, imported one by one so only the used icons ship                                              |
+| Fonts      | `next/font/google`: Plus Jakarta Sans                     | —       | One clean sans-serif for everything; self-hosted at build time, so no layout shift and no request to Google at runtime |
+| Linting    | ESLint 9 (flat config) with `eslint-config-next`          | 9.39    | React, hooks, Next.js and accessibility rules, plus extra readability rules                                            |
+| Formatting | Prettier + `prettier-plugin-tailwindcss`                  | 3.9     | One consistent code style; `eslint-config-prettier` stops the two tools from clashing                                  |
+| Hosting    | Vercel                                                    | —       | Free tier, a preview URL for every push, custom domain with HTTPS                                                      |
 
 **No backend.** The site is static content. Contact goes through `mailto:` and LinkedIn, so there is no server, database or API to maintain or secure.
 
@@ -65,12 +65,11 @@ flowchart LR
 
 Most of the page is plain server-rendered HTML. JavaScript is only sent for the parts that need to react to the visitor:
 
-| Component                                   | Type   | Why                                                                  |
-| ------------------------------------------- | ------ | -------------------------------------------------------------------- |
-| `Hero`, `About`, `Journey`, `Contact`       | Server | Static content, no interactivity                                     |
-| `Header`                                    | Client | Scroll state, active-section highlight, mobile menu                  |
-| `Work` (with `ProjectCard`, `ProjectModal`) | Client | Holds the "which project is open" state                              |
-| `RevealOnScroll`                            | Client | Adds the fade-in class as sections scroll into view; renders nothing |
+| Component                                       | Type   | Why                                                 |
+| ----------------------------------------------- | ------ | --------------------------------------------------- |
+| `Hero`, `About`, `Journey`, `Contact`, `Footer` | Server | Static content, no interactivity                    |
+| `Header`                                        | Client | Scroll state, active-section highlight, mobile menu |
+| `Work` (with `ProjectCard`, `ProjectModal`)     | Client | Holds the "which project is open" state             |
 
 ### Runtime behavior
 
@@ -108,9 +107,9 @@ portfolio/
 │   │   ├── Header.tsx           # fixed header, active link, mobile menu
 │   │   ├── Hero.tsx             # greeting, headline, CTAs, framed photo
 │   │   ├── About.tsx            # bio, AI workflow strip, skill cards
-│   │   ├── Journey.tsx          # alternating career timeline
-│   │   ├── Contact.tsx          # contact panel and footer
-│   │   ├── RevealOnScroll.tsx   # scroll-triggered fade-in
+│   │   ├── Journey.tsx          # alternating career timeline (currently hidden, see Editing the content)
+│   │   ├── Contact.tsx          # contact section
+│   │   ├── Footer.tsx           # copyright line
 │   │   └── work/
 │   │       ├── Work.tsx         # section, featured grid, "more" row, modal state
 │   │       ├── ProjectCard.tsx  # one card (full or compact)
@@ -164,15 +163,11 @@ Every piece of content lives in `src/data/portfolio.ts` as typed objects (`Proje
 
 ### 5. Accessible modal without a library
 
-`ProjectModal` is a hand-built dialog: `role="dialog"`, `aria-modal`, a labelled title, focus moved to the close button on open, Tab trapped inside, Esc / ✕ / backdrop to close, body scroll locked, and focus returned to the card that opened it. Motion's `AnimatePresence` handles the enter and exit animation and respects reduced-motion settings.
+`ProjectModal` is a hand-built dialog: `role="dialog"`, `aria-modal`, a labelled title, focus moved to the close button on open, Tab trapped inside, Esc / ✕ / backdrop to close, body scroll locked, and focus returned to the card that opened it. It opens and closes instantly: the design has no animation, so no animation library is needed.
 
-### 6. Scroll reveal that never hides content
+### 6. No motion by design
 
-Sections fade up as they scroll into view. To make sure content is never lost:
-
-- A one-line inline script adds a `js` class to `<html>` before first paint.
-- The hidden starting state only applies under `.js .reveal`, so with JavaScript disabled everything is simply visible.
-- `prefers-reduced-motion` turns the animation off.
+The page has no transitions, fade-ins or animated hovers. Hover states change colour instantly (for example a card's border turns blue). This keeps the page calm, removes a JavaScript dependency, and means there is nothing to switch off for people who prefer reduced motion.
 
 ### 7. Static export
 
@@ -182,19 +177,19 @@ Sections fade up as they scroll into view. To make sure content is never lost:
 
 ## Design system
 
-All tokens are CSS custom properties at the top of `src/app/globals.css`, and are also exposed to Tailwind through `@theme` (`bg-paper`, `text-ink`, `border-primary`, `font-hand` …).
+All tokens are CSS custom properties at the top of `src/app/globals.css`, and are also exposed to Tailwind through `@theme` (`bg-primary-wash`, `text-ink`, `border-line` …).
 
-| Token group | Values                                                                         |
-| ----------- | ------------------------------------------------------------------------------ |
-| Brand       | `--primary #087EA4`, plus `--primary-dark`, `--primary-tint`, `--primary-wash` |
-| Paper       | `--paper #FBF8F3` (light sections), `--paper-2 #F4EFE6` (alternate sections)   |
-| Ink         | `--ink #1E2A32`, `--ink-2`, `--ink-3` for headings, body and muted text        |
-| Accents     | amber, coral, green, purple, slate (timeline, skills, illustrations)           |
-| Type        | Plus Jakarta Sans (400–800) for everything; Caveat for handwritten touches     |
+| Token group | Values                                                                                |
+| ----------- | ------------------------------------------------------------------------------------- |
+| Brand       | `--primary #087EA4`, plus `--primary-dark`, `--primary-tint`, `--primary-wash`        |
+| Surfaces    | `--bg #FFFFFF`, `--bg-alt #F8FAFC` (alternate sections), `--line #E2E8F0` for borders |
+| Text        | `--ink #0F172A`, `--ink-2`, `--ink-3` for headings, body and muted text               |
+| Shape       | `--radius 8px` on buttons, images, cards and the modal; tags use 6px                  |
+| Type        | Plus Jakarta Sans (400–800) for everything                                            |
 
-Signature details: `1.5px` ink outlines, hard offset shadows on hover (`6px 6px 0 var(--ink)`), a wavy amber underline in the headline, a blob-shaped photo frame, and sections that alternate between the two paper tones.
+Signature details: flat surfaces with `1px` borders, an `8px` radius (`--radius`) on buttons, images, cards and the modal, a blue accent word in the headline, and sections that alternate between white and light grey automatically (every second section inside `<main>`).
 
-**Why plain CSS for components:** the look relies on many one-off details (offset shadows, blob radii, the timeline connector lines). Keeping them as named classes in one stylesheet made them easier to tune visually than long utility strings. Tailwind is still used for its reset, the theme tokens, and utilities in new code.
+**Why plain CSS for components:** the layout relies on a handful of named pieces (cards, the modal, the timeline connector lines). Keeping them as named classes in one stylesheet made them easier to tune visually than long utility strings. Tailwind is still used for its reset, the theme tokens, and utilities in new code.
 
 ---
 
@@ -206,11 +201,11 @@ Signature details: `1.5px` ink outlines, hard offset shadows on hover (`6px 6px 
 - Every project card is a real `<button>`; the modal is a proper dialog with focus management.
 - The mobile menu button exposes `aria-expanded` and `aria-controls`; the current section link gets `aria-current`.
 - Decorative elements (sparkles, notes, sticker, illustrations) are hidden from screen readers.
-- Reduced-motion preferences are respected for scrolling, reveals and the modal.
+- There is no motion on the page at all, so it is comfortable for people who prefer reduced motion.
 
 **Performance**
 
-- The whole page is pre-rendered HTML; only the header, gallery and reveal logic hydrate.
+- The whole page is pre-rendered HTML; only the header and the project gallery hydrate.
 - Fonts are self-hosted by `next/font`, so there's no layout shift or third-party font request.
 - Screenshots were resized and compressed ahead of time (about 1.2 MB for all seven), and load lazily.
 - Icons are imported individually, so only the icons in use are bundled.
@@ -270,6 +265,7 @@ Almost everything lives in **`src/data/portfolio.ts`**:
 | Timeline entries                                                  | `jobs`                  |
 | Contact panel text                                                | `contact`               |
 
+- **Hidden section:** "The journey so far" (`Journey`) is temporarily commented out, not removed. To show it again, uncomment `<Journey />` and its import in `src/app/page.tsx`, and the `journey` link in `src/components/Header.tsx`.
 - **Images:** put files in `public/` and reference them from the site root, for example `/projects/name.jpg`. Resize screenshots to at most 1400px wide before adding them.
 - **NDA work:** leave out `img` on the project, and its `mock` illustration is shown instead.
 - **New technology:** add it to the right layer in `src/lib/stack.ts` so its tag gets the right color. Unknown tags default to front end.
