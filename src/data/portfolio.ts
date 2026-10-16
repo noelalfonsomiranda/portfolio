@@ -90,7 +90,7 @@ export const skills: SkillGroup[] = [
     icon: "frontend",
     color: "primary",
     title: "Frontend",
-    items: "React, Next.js, TypeScript, Redux Toolkit, React Query, Lit",
+    items: "React, Next.js, TypeScript, Redux, React Query, Vite",
   },
   {
     icon: "styling",
