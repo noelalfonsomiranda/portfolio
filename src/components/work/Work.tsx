@@ -44,7 +44,6 @@ export default function Work() {
 
         {more.length > 0 && (
           <>
-            <h3 className="more-head">More projects</h3>
             <div className="projects-more">
               {more.map((p) => (
                 <ProjectCard key={p.title} project={p} compact onOpen={() => setOpen(p)} />

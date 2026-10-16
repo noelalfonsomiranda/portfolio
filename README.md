@@ -27,17 +27,17 @@ A one-page developer portfolio: a hero, an about section with skills, a project 
 
 ## Tech stack
 
-| Layer      | Technology                                                | Version | Why it was chosen                                                                                                      |
-| ---------- | --------------------------------------------------------- | ------- | ---------------------------------------------------------------------------------------------------------------------- |
-| Framework  | [Next.js](https://nextjs.org) (App Router, static export) | 16.4    | Pre-renders the page to plain HTML at build time: fast first paint, readable by search engines, no server to run       |
-| UI library | React                                                     | 19.3    | Component model for the sections, cards and modal                                                                      |
-| Language   | TypeScript (strict)                                       | 5.9     | Typed content model catches data mistakes at build time                                                                |
-| Styling    | Tailwind CSS v4 + hand-written component CSS              | 4.3     | Tailwind supplies the reset and token utilities; the signature "sketch" styles are plain CSS in one file               |
-| Icons      | [Lucide React](https://lucide.dev)                        | 1.57    | Consistent outline icons, imported one by one so only the used icons ship                                              |
-| Fonts      | `next/font/google`: Plus Jakarta Sans                     | —       | One clean sans-serif for everything; self-hosted at build time, so no layout shift and no request to Google at runtime |
-| Linting    | ESLint 9 (flat config) with `eslint-config-next`          | 9.39    | React, hooks, Next.js and accessibility rules, plus extra readability rules                                            |
-| Formatting | Prettier + `prettier-plugin-tailwindcss`                  | 3.9     | One consistent code style; `eslint-config-prettier` stops the two tools from clashing                                  |
-| Hosting    | Vercel                                                    | —       | Free tier, a preview URL for every push, custom domain with HTTPS                                                      |
+| Layer      | Technology                                                                                 | Version | Why it was chosen                                                                                                                                                                              |
+| ---------- | ------------------------------------------------------------------------------------------ | ------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Framework  | [Next.js](https://nextjs.org) (App Router, static export)                                  | 16.4    | Pre-renders the page to plain HTML at build time: fast first paint, readable by search engines, no server to run                                                                               |
+| UI library | React                                                                                      | 19.3    | Component model for the sections, cards and modal                                                                                                                                              |
+| Language   | TypeScript (strict)                                                                        | 5.9     | Typed content model catches data mistakes at build time                                                                                                                                        |
+| Styling    | Tailwind CSS v4 + hand-written component CSS                                               | 4.3     | Tailwind supplies the reset and token utilities; the signature "sketch" styles are plain CSS in one file                                                                                       |
+| Icons      | [Lucide React](https://lucide.dev)                                                         | 1.57    | Consistent outline icons, imported one by one so only the used icons ship                                                                                                                      |
+| Fonts      | [`@fontsource-variable/plus-jakarta-sans`](https://fontsource.org/fonts/plus-jakarta-sans) | 5.x     | Self-hosted variable font from npm (weights 200–800). Used instead of `next/font/google` because Google serves this font from `/l/font?kit=…&…` URLs that the Turbopack dev server can't parse |
+| Linting    | ESLint 9 (flat config) with `eslint-config-next`                                           | 9.39    | React, hooks, Next.js and accessibility rules, plus extra readability rules                                                                                                                    |
+| Formatting | Prettier + `prettier-plugin-tailwindcss`                                                   | 3.9     | One consistent code style; `eslint-config-prettier` stops the two tools from clashing                                                                                                          |
+| Hosting    | Vercel                                                                                     | —       | Free tier, a preview URL for every push, custom domain with HTTPS                                                                                                                              |
 
 **No backend.** The site is static content. Contact goes through `mailto:` and LinkedIn, so there is no server, database or API to maintain or secure.
 
@@ -144,7 +144,7 @@ Every piece of content lives in `src/data/portfolio.ts` as typed objects (`Proje
 
 ### 2. Featured order is configuration, not code
 
-`FEATURED` is a list of project titles. The first six render as large cards in that exact order; every other project automatically goes to the compact "and a few more" row. Re-ordering the gallery is a one-line change.
+`FEATURED` is a list of project titles. Those six render first, in that exact order, with a short description; every other project follows in the same grid as a compact card (title and tags only), in the order it appears in `projects`. Re-ordering the gallery is a one-line change.
 
 ### 3. Full-stack tags, colored by layer
 
@@ -206,7 +206,7 @@ Signature details: flat surfaces with `1px` borders, an `8px` radius (`--radius`
 **Performance**
 
 - The whole page is pre-rendered HTML; only the header and the project gallery hydrate.
-- Fonts are self-hosted by `next/font`, so there's no layout shift or third-party font request.
+- The font is self-hosted from npm, so there is no third-party font request.
 - Screenshots were resized and compressed ahead of time (about 1.2 MB for all seven), and load lazily.
 - Icons are imported individually, so only the icons in use are bundled.
 

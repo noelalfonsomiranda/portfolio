@@ -2,6 +2,7 @@
 
 /* Design tokens: flat and simple. One blue, neutral greys, 1px borders, 8px corners, no shadows or motion. */
 :root {
+  --font-body: "Plus Jakarta Sans Variable";
   --primary: #087ea4;
   --primary-dark: #06617e;
   --primary-tint: #d6eef5;
@@ -375,14 +376,10 @@
     gap: 20px;
   }
   .projects-more {
+    margin-top: 20px; /* same as the grid gap, so both groups read as one grid */
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
-  }
-  .more-head {
-    font-size: 18px;
-    font-weight: 700;
-    margin: 40px 0 14px;
   }
   /* Buttons center their content vertically; anchor to the top so equal-height cards have no gap above the image. */
   .project {

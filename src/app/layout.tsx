@@ -1,13 +1,9 @@
 import type { Metadata, Viewport } from "next";
-import { Plus_Jakarta_Sans } from "next/font/google";
+// Self-hosted from npm instead of next/font/google: Google serves this font from `/l/font?kit=…&…`
+// URLs that the Turbopack dev server can't parse ("next/font/google queries have exactly one entry").
+import "@fontsource-variable/plus-jakarta-sans";
 import { profile } from "@/data/portfolio";
 import "./globals.css";
-
-const body = Plus_Jakarta_Sans({
-  variable: "--font-body",
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800"],
-});
 
 export const metadata: Metadata = {
   title: `${profile.name} · ${profile.title}`,
@@ -19,11 +15,11 @@ export const metadata: Metadata = {
   },
 };
 
-export const viewport: Viewport = { themeColor: "#FBF8F3" };
+export const viewport: Viewport = { themeColor: "#FFFFFF" };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" className={body.variable}>
+    <html lang="en">
       <body>{children}</body>
     </html>
   );

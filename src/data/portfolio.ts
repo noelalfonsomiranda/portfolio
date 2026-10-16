@@ -60,8 +60,8 @@ export const profile = {
   greeting: "Hey there, I'm Noel 👋",
   headline: { before: "I turn ideas into web apps people ", highlight: "enjoy using", after: "." },
   subtitle:
-    "Full Stack Developer with 11+ years building fast, accessible apps for fintech, banking and e-commerce. React and TypeScript are home; Node.js is the backyard.",
-  status: "Open to front-end and full-stack roles",
+    "Full Stack Developer with 11+ years building fast, accessible web apps for fintech, banking and e-commerce, from React front ends to Node.js APIs.",
+  status: "Available for freelance projects",
   photo: { src: "/noel.jpg", alt: "Noel Alfonso Miranda at his desk" },
   email: "noelalfonsomiranda@gmail.com",
   linkedin: {
@@ -69,19 +69,19 @@ export const profile = {
     label: "in/noel-alfonso-miranda",
   },
   seoDescription:
-    "Noel Alfonso Miranda, Full Stack Developer with 11+ years building fast, accessible web apps with React, TypeScript and Node.js for fintech, banking and e-commerce.",
+    "Noel Alfonso Miranda, freelance Full Stack Developer with 11+ years building fast, accessible web apps with React, TypeScript and Node.js for fintech, banking and e-commerce.",
 };
 
 export const about = {
   eyebrow: "About me",
-  heading: "Frontend at heart, full-stack when it counts.",
+  heading: "From UI to API, I build the whole feature.",
   paragraphs: [
     "I'm a developer from the Philippines who enjoys the whole journey of a feature, from business rules and Figma to the last edge case. I care about clean, maintainable code, accessibility and good tests.",
-    "I like working closely with designers, QA and product owners, reviewing code, and helping other devs grow.",
+    "Working freelance, I'm your single point of contact from start to finish: I turn your goals into a plan, build the front end and back end, and keep you updated along the way.",
   ],
   workflow: {
     title: "How I ship with AI (Claude, ChatGPT, Kiro)",
-    steps: ["Plan", "Figma → UI", "Code", "Tests", "Docs", "Review before merge"],
+    steps: ["Plan", "Figma → UI", "Code", "Tests", "Docs", "Review before delivery"],
   },
 };
 
@@ -124,7 +124,7 @@ export const skills: SkillGroup[] = [
   },
 ];
 
-/** Main cards, in this order. Every other project goes to the compact "and a few more" row. */
+/** Shown first, in this order. Every other project follows after them, in the order listed below. */
 export const FEATURED = [
   "Mint Hosted Payment Page and WebPay",
   "Mint Hub",
@@ -132,9 +132,6 @@ export const FEATURED = [
   "UnionBank Online",
   "SYKES OneTEAM",
   "7-Eleven CLiQQ Shop",
-  "Easyqueue",
-  "QuarterOne",
-  "World Vision BeCashReady",
 ];
 
 export const projects: Project[] = [
@@ -306,6 +303,25 @@ export const projects: Project[] = [
     tags: ["React", "Redux", "Material UI", "Node.js", "NestJS", "REST APIs", "Firebase", "Jest", "Netlify"],
   },
   {
+    kind: "Booking",
+    title: "Easyqueue",
+    img: "/projects/easyqueue.jpg",
+    pos: "center top",
+    mock: "queue",
+    color: "purple",
+    role: "React Developer",
+    short: "Virtual queues and appointment booking.",
+    desc: "A virtual queuing and appointment-booking app that lets people skip the lines at businesses, government offices and medical facilities, with a separate view for merchants to manage their queues.",
+    points: [
+      "Book a slot or join a queue in a few taps",
+      "Track your schedule",
+      "Merchant view for queues and appointments",
+      "React, Redux and Material UI from Figma, on NestJS APIs",
+      "Jest tests and Netlify deployments",
+    ],
+    tags: ["React", "Redux", "Material UI", "NestJS", "REST APIs", "Jest", "Netlify"],
+  },
+  {
     kind: "SaaS · Finance",
     title: "QuarterOne",
     img: "/projects/quarterone.jpg",
@@ -353,25 +369,6 @@ export const projects: Project[] = [
       "Deployed on AWS through CI/CD",
     ],
     tags: ["React", "Redux", "Semantic UI", "Node.js", "Express", "REST APIs", "PostgreSQL", "AWS", "CI/CD"],
-  },
-  {
-    kind: "Booking",
-    title: "Easyqueue",
-    img: "/projects/easyqueue.jpg",
-    pos: "center top",
-    mock: "queue",
-    color: "purple",
-    role: "React Developer",
-    short: "Virtual queues and appointment booking.",
-    desc: "A virtual queuing and appointment-booking app that lets people skip the lines at businesses, government offices and medical facilities, with a separate view for merchants to manage their queues.",
-    points: [
-      "Book a slot or join a queue in a few taps",
-      "Track your schedule",
-      "Merchant view for queues and appointments",
-      "React, Redux and Material UI from Figma, on NestJS APIs",
-      "Jest tests and Netlify deployments",
-    ],
-    tags: ["React", "Redux", "Material UI", "NestJS", "REST APIs", "Jest", "Netlify"],
   },
   {
     kind: "Hospitality",
@@ -469,8 +466,8 @@ export const jobs: Job[] = [
 
 export const contact = {
   eyebrow: "Contact",
-  heading: "Got a project or a role in mind? Let's talk.",
-  lead: "I'm open to full-time front-end and full-stack roles, plus the occasional freelance build. I usually reply within a day.",
+  heading: "Have a project in mind? Let's talk.",
+  lead: "I take on freelance projects, from new web apps to improving existing ones, and handle them from start to finish. I usually reply within a day.",
 };
 
 export const footer = { note: "Built with React and Next.js." };
